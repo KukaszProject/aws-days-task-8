@@ -22,12 +22,12 @@ def lambda_handler(event, context):
     # Write the item to DynamoDB
     table.put_item(
         Item={
+    "verification": "20261026115138",
             "orderId": order_id,
             "userId": "mock-user",
             "productId": "mock-product",
             "quantity": 1,
             "status": "CREATED",
-            "verification": verification,
             "createdAt": datetime.utcnow().isoformat()
         }
     )
