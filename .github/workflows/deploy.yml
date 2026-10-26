@@ -19,18 +19,18 @@ jobs:
 
       - name: Zip and Deploy CreateOrder
         run: |
-          cd lambdas/cmtr_ac643e5v_lambda_createOrder
-          zip -r function.zip handler.py
-          aws lambda update-function-code --function-name cmtr_ac643e5v_lambda_createOrder --zip-file fileb://function.zip
+          cd lambdas
+          zip -r createOrder.zip cmtr_ac643e5v_lambda_createOrder/
+          aws lambda update-function-code --function-name cmtr_ac643e5v_lambda_createOrder --zip-file fileb://createOrder.zip
 
       - name: Zip and Deploy ReserveStock
         run: |
-          cd lambdas/cmtr_ac643e5v_lambda_reserveStock
-          zip -r function.zip handler.py
-          aws lambda update-function-code --function-name cmtr_ac643e5v_lambda_reserveStock --zip-file fileb://function.zip
+          cd lambdas
+          zip -r reserveStock.zip cmtr_ac643e5v_lambda_reserveStock/
+          aws lambda update-function-code --function-name cmtr_ac643e5v_lambda_reserveStock --zip-file fileb://reserveStock.zip
 
       - name: Zip and Deploy SendNotification
         run: |
-          cd lambdas/cmtr_ac643e5v_lambda_sendNotification
-          zip -r function.zip handler.py
-          aws lambda update-function-code --function-name cmtr_ac643e5v_lambda_sendNotification --zip-file fileb://function.zip
+          cd lambdas
+          zip -r sendNotification.zip cmtr_ac643e5v_lambda_sendNotification/
+          aws lambda update-function-code --function-name cmtr_ac643e5v_lambda_sendNotification --zip-file fileb://sendNotification.zip

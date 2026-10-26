@@ -2,6 +2,7 @@ import boto3
 from datetime import datetime
 import uuid
 import os
+import json
 
 ORDERS_TABLE = os.environ["ORDERS_TABLE"]
 
@@ -9,8 +10,12 @@ dynamodb = boto3.resource("dynamodb")
 table = dynamodb.Table(ORDERS_TABLE)
 
 def lambda_handler(event, context):
-    order_id = f"order-{uuid.uuid4()}"
-    verification = event.get("verification")
+    # Parse body if API Gateway proxy integration is used
+    if "body" in event:
+        body = json.loads(event["body"]) if isinstance(event["body"], str) else event["body"]
+        verification = body.get("verification")
+    else:
+        verification = event.get("verification")
 
     table.put_item(
         Item={
