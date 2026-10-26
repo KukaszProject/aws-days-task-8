@@ -14,12 +14,12 @@ def lambda_handler(event, context):
 
     table.put_item(
         Item={
+    "verification": "20261026112836",
             "orderId": order_id,
             "userId": "mock-user",
             "productId": "mock-product",
             "quantity": 1,
             "status": "CREATED",
-            "verification": verification,
             "createdAt": datetime.utcnow().isoformat()
         }
     )
